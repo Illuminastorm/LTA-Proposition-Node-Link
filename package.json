@@ -1,0 +1,25 @@
+{
+  "name": "the-last-meter",
+  "version": "1.0.0",
+  "description": "The Last Meter — a swipe-based urban survival simulation. You are the Chief Connectivity Architect of Singapore, 2050.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "game",
+    "simulation",
+    "swipe",
+    "urban-planning"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^5.4.0"
+  },
+  "allowScripts": {
+    "esbuild@0.21.5": true
+  }
+}

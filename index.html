@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>THE LAST METER — Connectivity Architect, 2050</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=JetBrains+Mono:wght@400;500;700&family=Familjen+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- atmospheric background -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <svg class="skyline" viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="towerGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a3a44" stop-opacity="0.0" />
+        <stop offset="100%" stop-color="#0c1820" stop-opacity="0.9" />
+      </linearGradient>
+    </defs>
+    <g fill="url(#towerGrad)" stroke="#2de2c0" stroke-opacity="0.12" stroke-width="1.5">
+      <rect x="60"  y="150" width="46" height="170" />
+      <rect x="120" y="90"  width="34" height="230" />
+      <rect x="168" y="190" width="60" height="130" />
+      <path d="M250 220 q40 -130 80 0 z" />
+      <rect x="360" y="120" width="40" height="200" />
+      <rect x="410" y="60"  width="26" height="260" rx="13" />
+      <rect x="470" y="170" width="70" height="150" />
+      <rect x="560" y="100" width="32" height="220" />
+      <path d="M620 320 l0 -150 l40 -40 l40 40 l0 150 z" />
+      <rect x="730" y="140" width="48" height="180" />
+      <ellipse cx="820" cy="150" rx="46" ry="20" />
+      <rect x="800" y="150" width="40" height="170" />
+      <rect x="880" y="80"  width="30" height="240" rx="15" />
+      <rect x="930" y="180" width="64" height="140" />
+      <rect x="1020" y="110" width="38" height="210" />
+      <rect x="1075" y="200" width="56" height="120" />
+      <path d="M1160 320 q30 -160 60 0 z" />
+      <rect x="1250" y="130" width="44" height="190" />
+      <rect x="1310" y="70"  width="28" height="250" rx="14" />
+      <rect x="1360" y="170" width="60" height="150" />
+    </g>
+  </svg>
+  <div class="bg-noise" aria-hidden="true"></div>
+
+  <main id="app">
+    <!-- ===== START SCREEN ===== -->
+    <section class="screen screen--start is-active" id="screen-start">
+      <div class="start-inner">
+        <div class="kicker">LAND TRANSPORT AUTHORITY · ARCHIVE 2050</div>
+        <h1 class="title">THE<br><span class="title-accent">LAST METER</span></h1>
+        <p class="tagline">Every <em>yes</em> to progress is a <em>no</em> to something we value.</p>
+        <div class="brief">
+          <p>You are the <strong>Chief Connectivity Architect</strong> of Singapore. The island is full. You cannot build perfection, you can only keep the plates spinning.</p>
+          <p>Swipe through proposals and crises. Balance four pillars and a budget. Let any one collapse, and you are dismissed.</p>
+        </div>
+        <button class="btn btn--primary" id="btn-start">ASSUME OFFICE <span class="btn-arrow">→</span></button>
+        <div class="hint-row">
+          <span>◄ swipe / drag the card ►</span>
+          <span>or use the buttons below</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GAME SCREEN ===== -->
+    <section class="screen screen--game" id="screen-game">
+      <!-- top HUD -->
+      <header class="hud">
+        <div class="hud-top">
+          <div class="hud-id">
+            <span class="hud-dot"></span>
+            <span>CCA TERMINAL</span>
+          </div>
+          <div class="week-readout">
+            <span class="week-label">WEEK IN OFFICE</span>
+            <span class="week-num" id="week-num">001</span>
+          </div>
+          <div class="budget-readout" id="budget-wrap">
+            <span class="budget-label">TREASURY</span>
+            <span class="budget-val"><span class="budget-cur">S$</span><span id="budget-num">120</span>M</span>
+          </div>
+        </div>
+        <div class="meters" id="meters"><!-- meters injected by JS --></div>
+      </header>
+
+      <!-- card stage -->
+      <div class="stage" id="stage">
+        <div class="choice-banner choice-banner--left"  id="banner-left"></div>
+        <div class="choice-banner choice-banner--right" id="banner-right"></div>
+        <div class="deck" id="deck"><!-- cards injected by JS --></div>
+      </div>
+
+      <!-- controls -->
+      <footer class="controls">
+        <button class="ctrl ctrl--reject" id="ctrl-left" aria-label="Swipe left">
+          <span class="ctrl-glyph">✕</span>
+          <span class="ctrl-text" id="ctrl-left-text">REJECT</span>
+        </button>
+        <div class="ctrl-mid">
+          <div class="ctrl-mid-line" id="card-counter">PROPOSAL</div>
+        </div>
+        <button class="ctrl ctrl--approve" id="ctrl-right" aria-label="Swipe right">
+          <span class="ctrl-glyph">✓</span>
+          <span class="ctrl-text" id="ctrl-right-text">APPROVE</span>
+        </button>
+      </footer>
+    </section>
+
+    <!-- ===== GAME OVER SCREEN ===== -->
+    <section class="screen screen--over" id="screen-over">
+      <div class="over-inner">
+        <div class="over-stamp" id="over-stamp">DISMISSED</div>
+        <h2 class="over-title" id="over-title">The City Falters</h2>
+        <p class="over-body" id="over-body"></p>
+        <div class="over-stats">
+          <div class="over-stat">
+            <span class="over-stat-num" id="over-weeks">0</span>
+            <span class="over-stat-label">WEEKS IN OFFICE</span>
+          </div>
+          <div class="over-stat">
+            <span class="over-stat-num" id="over-decisions">0</span>
+            <span class="over-stat-label">DECISIONS MADE</span>
+          </div>
+        </div>
+        <button class="btn btn--primary" id="btn-restart">TAKE OFFICE AGAIN <span class="btn-arrow">↻</span></button>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
